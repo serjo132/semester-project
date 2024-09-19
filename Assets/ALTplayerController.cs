@@ -52,6 +52,7 @@ public class ALTPlayerController : MonoBehaviour
     {
         if(other.gameObject.CompareTag("EnemyBullet"))
         {
+            LevelManager.manager.GameOver();
             Destroy(gameObject);
         }
     }

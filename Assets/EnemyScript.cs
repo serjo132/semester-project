@@ -42,20 +42,24 @@ public class EnemyScript : MonoBehaviour
 
     private void GetTarget()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if (GameObject.FindGameObjectWithTag("Player"))
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Destroy(other.gameObject);
+            LevelManager.manager.GameOver();
             target = null;
         }
         else if (other.gameObject.CompareTag("Bullet"))
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
+            LevelManager.manager.IncreaseScore(1);
         }
     }
 }
