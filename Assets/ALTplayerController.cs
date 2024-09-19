@@ -48,4 +48,11 @@ public class ALTPlayerController : MonoBehaviour
     {
         Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
     }
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
